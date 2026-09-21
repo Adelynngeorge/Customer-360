@@ -1,117 +1,204 @@
 # Customer Intelligence & Growth Analytics Platform
 
-> End-to-end customer analytics solution featuring RFM segmentation, churn prediction, and A/B testing — built with Python, SQL, and Streamlit.
+> An end-to-end customer analytics platform built with **Python, SQL, machine learning, and Streamlit** to segment customers, identify churn risk, evaluate marketing experiments, and support customer retention and growth decisions.
 
 ---
 
-## Overview
+## 📌 Project Overview
 
-This project delivers a full-stack customer analytics platform designed to help businesses understand, retain, and grow their customer base. Using transactional data, it segments customers by **Recency, Frequency, and Monetary Value (RFM)**, predicts **churn risk** via logistic regression, and surfaces insights through an interactive **Streamlit dashboard**.
+The **Customer Intelligence & Growth Analytics Platform** transforms customer transaction and behavioral data into actionable business insights.
 
-SQL-driven transformations, Python-based modeling, and Plotly visualizations work together to produce actionable intelligence across the entire customer lifecycle.
+The platform focuses on three important customer analytics questions:
 
----
+1. **Who are our most valuable customers?**
+2. **Which customers are at risk of churning?**
+3. **Which marketing strategies are actually driving better results?**
 
-## Features
+The solution combines **SQL-based data transformation, RFM customer segmentation, machine learning, statistical A/B testing, and interactive visualization** to provide a complete view of customer behavior.
 
-- **RFM Segmentation** — Classifies customers into behavioral tiers (Champions, At-Risk, Lost, etc.) using SQL-based scoring logic
-- **Churn Prediction Model** — Logistic regression model trained on customer activity features to flag high-risk accounts
-- **A/B Testing Framework** — Statistical hypothesis testing to evaluate the impact of campaigns and product changes
-- **Interactive Dashboard** — Streamlit + Plotly UI for exploring segments, monitoring KPIs, and filtering by cohort
-- **Modular SQL Layer** — All data transformations live in standalone `.sql` files, fully decoupled from Python logic
+An interactive **Streamlit dashboard** allows users to explore customer segments, monitor key performance indicators, identify high-risk customers, and analyze growth opportunities.
 
 ---
 
-## Tech Stack
+## 🎯 Business Objectives
 
-| Layer | Tools |
-|---|---|
-| Database | SQLite |
-| Data Processing | Python (pandas, NumPy) |
-| Modeling | scikit-learn (logistic regression) |
-| Visualization | Plotly |
-| Dashboard | Streamlit |
-| Query Layer | SQL (standalone `.sql` files) |
+The platform is designed to help businesses:
+
+* Identify high-value and loyal customers
+* Detect customers showing signs of churn
+* Understand purchasing behavior across customer segments
+* Support targeted retention and marketing strategies
+* Measure the effectiveness of campaigns through A/B testing
+* Turn customer data into actionable growth opportunities
 
 ---
 
-## Project Structure
+## 🚀 Key Features
 
-```
+### Customer Segmentation
+
+Uses **Recency, Frequency, and Monetary Value (RFM)** analysis to group customers according to purchasing behavior.
+
+Customers are classified into business-friendly segments such as:
+
+* Champions
+* Loyal Customers
+* At Risk
+* Lost Customers
+
+This segmentation helps businesses prioritize retention campaigns, loyalty programs, and targeted promotions.
+
+### Churn Prediction
+
+A **logistic regression classification model** estimates the probability that a customer will churn.
+
+Customer activity and behavioral features are used to identify accounts that may require proactive retention efforts.
+
+Model performance is evaluated using:
+
+* ROC-AUC
+* Precision
+* Recall
+* Confusion Matrix
+
+### A/B Testing
+
+A statistical experimentation framework evaluates whether differences between **control and treatment groups** are statistically significant.
+
+Two-proportion z-tests are used to analyze conversion performance and determine whether marketing or product changes produced measurable differences.
+
+### Interactive Analytics Dashboard
+
+A **Streamlit and Plotly dashboard** provides an interactive interface for exploring customer intelligence.
+
+Users can:
+
+* Monitor customer KPIs
+* Compare customer segments
+* Analyze purchasing behavior
+* Identify churn-risk customers
+* Filter results by customer cohort
+* Explore retention and growth opportunities
+
+### Modular SQL Analytics Layer
+
+Core transformations and analytical queries are stored in independent `.sql` files rather than embedded directly within Python.
+
+This structure improves:
+
+* Reusability
+* Maintainability
+* Reproducibility
+* Collaboration
+
+---
+
+## 🛠️ Tech Stack
+
+| Area                 | Technology            |
+| -------------------- | --------------------- |
+| Database             | SQLite                |
+| Data Analysis        | Python, pandas, NumPy |
+| Data Transformation  | SQL                   |
+| Machine Learning     | scikit-learn          |
+| Statistical Analysis | Python                |
+| Visualization        | Plotly                |
+| Dashboard            | Streamlit             |
+| Development          | Jupyter Notebook      |
+
+---
+
+## 📂 Project Structure
+
+```text
 customer-intelligence-platform/
+│
 ├── data/
-│   ├── raw/                  # Source transaction data
-│   └── processed/            # Cleaned and transformed outputs
+│   ├── raw/                       # Original customer and transaction data
+│   └── processed/                 # Cleaned and transformed datasets
+│
 ├── sql/
-│   ├── rfm_scoring.sql       # RFM calculation logic
-│   ├── churn_features.sql    # Feature engineering queries
-│   └── segment_summary.sql   # Aggregation for dashboard
+│   ├── rfm_scoring.sql            # RFM scoring and segmentation
+│   ├── churn_features.sql         # Churn feature engineering
+│   └── segment_summary.sql        # Customer segment aggregations
+│
 ├── notebooks/
-│   ├── eda.ipynb             # Exploratory data analysis
-│   └── churn_model.ipynb     # Model training and evaluation
+│   ├── eda.ipynb                  # Exploratory data analysis
+│   └── churn_model.ipynb          # Churn model development
+│
 ├── models/
-│   └── churn_model.pkl       # Serialized logistic regression model
+│   └── churn_model.pkl            # Trained churn prediction model
+│
 ├── app/
-│   └── dashboard.py          # Streamlit application
+│   └── dashboard.py               # Streamlit dashboard
+│
 ├── requirements.txt
 └── README.md
 ```
 
 ---
 
-## Getting Started
+## 📊 Key Analyses
 
-### Prerequisites
+### 1. RFM Customer Segmentation
 
-- Python 3.11+
-- pip
+Customer transaction history is analyzed across three dimensions:
 
-### Installation
+**Recency** — How recently did the customer make a purchase?
 
-```bash
-# Clone the repository
-git clone https://github.com/YOUR_USERNAME/customer-intelligence-platform.git
-cd customer-intelligence-platform
+**Frequency** — How often does the customer purchase?
 
-# Install dependencies
-pip install -r requirements.txt
-```
+**Monetary Value** — How much does the customer spend?
 
-### Run the Dashboard
+Customers receive RFM scores and are grouped into behavioral segments.
 
-```bash
-streamlit run app/dashboard.py
-```
+| Customer Segment | Business Interpretation                                |
+| ---------------- | ------------------------------------------------------ |
+| Champions        | Recent, frequent, and high-value customers             |
+| Loyal Customers  | Consistent customers with strong engagement            |
+| At Risk          | Previously active customers showing declining activity |
+| Lost Customers   | Customers with extended periods of inactivity          |
 
----
-
-## Key Analyses
-
-### RFM Segmentation
-Customers are scored across three dimensions using SQL queries against transactional history. Scores are bucketed into quintiles and mapped to named segments for business interpretation.
-
-| Segment | Description |
-|---|---|
-| Champions | Bought recently, buy often, spend the most |
-| Loyal Customers | Buy regularly, responsive to promotions |
-| At Risk | Previously frequent buyers showing reduced activity |
-| Lost | Haven't purchased in a long time |
-
-### Churn Prediction
-A logistic regression model predicts the probability of churn for each customer based on engineered features including purchase recency, session frequency, average order value, and support ticket history. Model evaluation includes ROC-AUC, precision-recall, and confusion matrix analysis.
-
-### A/B Testing
-Hypothesis testing (two-proportion z-test) is used to evaluate the statistical significance of conversion differences between control and treatment groups across marketing campaigns.
-
-## Skills Demonstrated
-
-- Writing production-ready SQL for analytical use cases
-- Feature engineering and binary classification with scikit-learn
-- Statistical testing and interpreting p-values for business decisions
-- Building interactive, filterable dashboards with Streamlit and Plotly
-- Structuring a data analytics project for reproducibility and collaboration
+These segments can support targeted marketing, loyalty programs, and customer retention strategies.
 
 ---
 
-## Status
+### 2. Churn Risk Analysis
 
+The churn prediction model uses customer behavior and activity features such as:
+
+* Purchase recency
+* Purchase frequency
+* Average order value
+* Customer activity
+* Support interaction history
+
+A. logistic regression model** calculates churn probability for individual customers.
+
+High-risk customers can then be identified for potential retention campaigns.
+
+
+
+3. Marketing A/B Testing
+
+The platform includes an experimentation framework for comparing marketing or product strategies.
+
+A **two-proportion z-test** evaluates whether conversion-rate differences between control and treatment groups are statistically significant.
+
+This allows businesses to make campaign decisions based on measured results rather than assumptions.
+
+---
+
+## 💡 Business Applications
+
+The insights generated by the platform can support several business functions, including:
+
+Marketing — Identify customer groups for personalized campaigns.
+
+**Customer Retention** — Detect high-risk customers before they disengage.
+
+**Growth Strategy** — Discover high-value customer groups and growth opportunities.
+
+**Product Analytics** — Evaluate how customer behavior changes across products or experiences.
+
+**Expe**
